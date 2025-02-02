@@ -1,91 +1,102 @@
 "use client";
 
+import { FaMicrophoneAlt, FaEye, } from "react-icons/fa"; // Importing icons
+import { MdOutlineVideoLibrary } from "react-icons/md";
+
 export default function About() {
   return (
-    <main className="min-h-screen bg-[#1A1A1A] text-[#FAFAFA] py-16 px-6 sm:px-32">
+    <main className="min-h-screen bg-[#0D0D0D] text-[#FAFAFA] py-16 px-6 sm:px-16 lg:px-32">
       {/* Header Section */}
-      <header className="text-center mb-12">
-        <h1 className="text-4xl font-bold">
-          About <span className="text-[#2E90FA] underline">Us</span>
+      <header className="text-center mb-16">
+        <h1 className="text-4xl font-extrabold mb-4 text-[#2E90FA]">
+          About <span className="underline">Detect AI</span>
         </h1>
-        <p className="mt-4 text-lg text-[#808080]">
-          Learn more about our mission, vision, and the people behind the scenes.
+        <p className="text-lg text-[#808080] max-w-3xl mx-auto">
+          Discover how we combine cutting-edge AI models to ensure authenticity in digital media.
         </p>
       </header>
 
       {/* About Content */}
-      <section className="space-y-16">
-        {/* Mission Section */}
-        <div className="flex flex-col lg:flex-row items-center gap-8">
-          <div className="lg:w-1/2">
-            <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
-            <p className="text-[#808080]">
-              Our mission is to revolutionize the way people interact with AI-generated
-              audio and video content. We aim to provide cutting-edge tools that ensure
-              transparency, authenticity, and trust in the digital world.
-            </p>
-          </div>
-          <div className="lg:w-1/2">
-            <img
-              src="/mission-image.jpg"
-              alt="Mission"
-              className="w-full rounded-3xl shadow-lg"
-            />
+      <section className="space-y-20">
+        {/* Objectives Section */}
+        <div className="space-y-12">
+          <h2 className="text-3xl font-bold text-center">Our Objectives</h2>
+          <p className="text-[#808080] text-center max-w-3xl mx-auto">
+            At Detect AI, we harness the power of advanced AI models to detect and analyze digital content for transparency and authenticity. Here's what we're working on:
+          </p>
+
+          {/* Objective Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="bg-[#2A2A2A] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <FaMicrophoneAlt className="text-[#2E90FA] text-3xl mr-4" />
+                <h3 className="text-xl font-semibold text-[#2E90FA]">Emotional Voice Analysis</h3>
+              </div>
+              <p className="text-[#808080]">
+                By analyzing audio features like pitch and tone with LSTM networks, we capture emotional patterns in speech. AI-generated voices often lack authentic emotional flow.
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-[#2A2A2A] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                < FaMicrophoneAlt  className="text-[#2E90FA] text-3xl mr-4" />
+                <h3 className="text-xl font-semibold text-[#2E90FA]">Lip Movement Analysis</h3>
+              </div>
+              <p className="text-[#808080]">
+                Using 3D Convolutional Neural Networks, we analyze lip movements to detect inconsistencies between lip gestures and AI-generated speech.
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-[#2A2A2A] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <FaEye className="text-[#2E90FA] text-3xl mr-4" />
+                <h3 className="text-xl font-semibold text-[#2E90FA]">Eye Movement Analysis</h3>
+              </div>
+              <p className="text-[#808080]">
+                We use CNN models to track eye movements and identify anomalies, such as unnatural blinking and gaze behavior, which can signal AI-generated avatars or deepfakes.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Vision Section */}
-        <div className="flex flex-col lg:flex-row-reverse items-center gap-8">
-          <div className="lg:w-1/2">
-            <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
-            <p className="text-[#808080]">
-              We envision a future where AI technologies are used responsibly and
-              ethically. By empowering individuals with tools to detect AI-generated
-              content, we hope to foster a more trustworthy digital ecosystem.
-            </p>
-          </div>
-          <div className="lg:w-1/2">
-            <img
-              src="/vision-image.jpg"
-              alt="Vision"
-              className="w-full rounded-3xl shadow-lg"
-            />
-          </div>
-        </div>
+        {/* Technical Models Section */}
+        <div className="space-y-12">
+          <h2 className="text-3xl font-bold text-center">How Our Models Work</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <div className="bg-[#2A2A2A] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <FaMicrophoneAlt className="text-[#2E90FA] text-3xl mr-4" />
+                <h3 className="text-xl font-semibold text-[#2E90FA]">Audio Emotional Analysis</h3>
+              </div>
+              <p className="text-[#808080]">
+                We split audio from videos and analyze features like pitch, tone, and speech patterns to capture authentic or synthetic emotional signals.
+              </p>
+            </div>
 
-        {/* Team Section */}
-        <div>
-          <h2 className="text-2xl font-bold text-center mb-12">Meet Our Team</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Team Member 1 */}
-            <div className="bg-[#252525] p-6 rounded-3xl shadow-lg text-center">
-              <img
-                src="/team-member1.jpg"
-                alt="Team Member 1"
-                className="w-24 h-24 mx-auto rounded-full mb-4"
-              />
-              <h3 className="text-lg font-bold">John Doe</h3>
-              <p className="text-[#808080]">CEO & Founder</p>
+            {/* Feature 2 */}
+            <div className="bg-[#2A2A2A] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <MdOutlineVideoLibrary className="text-[#2E90FA] text-3xl mr-4" />
+                <h3 className="text-xl font-semibold text-[#2E90FA]">Lip Movement Features</h3>
+              </div>
+              <p className="text-[#808080]">
+                3D CNN models extract patterns from video frames, tracking lip synchronization and timing for AI-generated detection.
+              </p>
             </div>
-            {/* Team Member 2 */}
-            <div className="bg-[#252525] p-6 rounded-3xl shadow-lg text-center">
-              <img
-                src="/team-member2.jpg"
-                alt="Team Member 2"
-                className="w-24 h-24 mx-auto rounded-full mb-4"
-              />
-              <h3 className="text-lg font-bold">Jane Smith</h3>
-              <p className="text-[#808080]">Lead Developer</p>
-            </div>
-            {/* Team Member 3 */}
-            <div className="bg-[#252525] p-6 rounded-3xl shadow-lg text-center">
-              <img
-                src="/team-member3.jpg"
-                alt="Team Member 3"
-                className="w-24 h-24 mx-auto rounded-full mb-4"
-              />
-              <h3 className="text-lg font-bold">Alice Brown</h3>
-              <p className="text-[#808080]">UI/UX Designer</p>
+
+            {/* Feature 3 */}
+            <div className="bg-[#2A2A2A] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <FaEye className="text-[#2E90FA] text-3xl mr-4" />
+                <h3 className="text-xl font-semibold text-[#2E90FA]">Eye Movement Features</h3>
+              </div>
+              <p className="text-[#808080]">
+                CNN models track blinking patterns and gaze shifts to spot AI-generated inconsistencies in visual content.
+              </p>
             </div>
           </div>
         </div>

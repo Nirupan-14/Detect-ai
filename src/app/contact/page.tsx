@@ -2,7 +2,7 @@
 
 export default function Contact() {
   return (
-    <main className="min-h-screen bg-[#1A1A1A] text-[#FAFAFA] py-16 px-6 sm:px-32">
+    <main className="min-h-screen bg-[#0D0D0D] text-[#FAFAFA] md:py-16  py-8 px-6 sm:px-32">
       {/* Header Section */}
       <header className="text-center mb-12">
         <h1 className="text-4xl font-bold">
@@ -107,7 +107,8 @@ export default function Contact() {
                 />
               </svg>
             </div>
-            <p className="text-lg text-[#FAFAFA]">123 Main Street, City, Country</p>
+            <p className="text-lg text-[#FAFAFA]">Faulty of Technology </p>
+            
           </div>
 
           <div className="flex items-center gap-4 mb-4">

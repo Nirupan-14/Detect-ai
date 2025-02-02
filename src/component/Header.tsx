@@ -1,22 +1,27 @@
+'use client';
 import Link from 'next/link';
+import { useState } from 'react';
+import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
 export default function Header() {
-  return (
-  <header 
-  className="bg-[#0D0D0D] text-[#FDFDFD] py-6 px-12 text-[18px] relative"
->
-  <div
-  className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[70%] h-6 rounded-lg"
-  style={{
-    boxShadow: '0 20px 50px 10px rgba(46, 144, 250, 0.4)', // Enhanced shadow
-    background: 'radial-gradient(ellipse at center, rgba(46, 144, 250, 0.4) 50%, rgba(46, 144, 250, 0) 100%)',
-    width: '70%', // Wider shadow span
-    height: '8px', // Thin height for a subtle line
-    borderRadius: '50%', // Smooth curvature for the shadow
-  }}
-></div>
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-      <div className="  flex justify-between items-center">
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <header className="bg-[#0D0D0D] text-[#FDFDFD] py-6 px-6 md:px-12 text-[18px] relative">
+      {/* Shadow Effect */}
+      <div
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[70%] h-2 rounded-full"
+        style={{
+          boxShadow: '0 20px 50px 10px rgba(46, 144, 250, 0.4)',
+          background: 'radial-gradient(ellipse at center, rgba(46, 144, 250, 0.4) 50%, rgba(46, 144, 250, 0) 100%)',
+        }}
+      ></div>
+
+      <div className="flex justify-between items-center">
         {/* Logo Section */}
         <div className="flex items-center space-x-4">
           <svg
@@ -39,28 +44,24 @@ export default function Header() {
               fill="#2E90FA"
             />
           </svg>
-
           <Link href="/" className="font-extrabold text-2xl text-[#FDFDFD]">
             Detect AI
           </Link>
         </div>
 
-        {/* Navigation Links */}
-        <nav className="flex items-center space-x-4">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-4 ">
           <Link href="/about" className="hover:underline">
             About
           </Link>
-          <div
-            className="w-2 h-2 bg-[#535862] rounded-full"
-            aria-hidden="true"
-          ></div>
+          <div className="w-2 h-2 bg-[#535862] rounded-full" aria-hidden="true"></div>
           <Link href="/team" className="hover:underline">
             Team
           </Link>
         </nav>
 
         {/* Contact Us Button */}
-        <div>
+        <div className="hidden md:block">
           <Link
             href="/contact"
             className="border border-[#FDFDFD] rounded-full px-6 py-2 hover:bg-[#FDFDFD] hover:text-[#0D0D0D] transition duration-300"
@@ -68,7 +69,37 @@ export default function Header() {
             Contact Us
           </Link>
         </div>
+
+        {/* Mobile Menu Icon */}
+        <div className="md:hidden">
+          <button onClick={toggleMenu} aria-label="Toggle Menu">
+            {isMenuOpen ? (
+              <AiOutlineClose size={28} />
+            ) : (
+              <AiOutlineMenu size={28} />
+            )}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <nav className="mt-4 md:hidden space-y-2 text-center">
+          <Link href="/about" className="block hover:underline" onClick={toggleMenu}>
+            About
+          </Link>
+          <Link href="/team" className="block hover:underline" onClick={toggleMenu}>
+            Team
+          </Link>
+          <Link
+            href="/contact"
+            className="block border border-[#FDFDFD] rounded-full px-6 py-2 hover:bg-[#FDFDFD] hover:text-[#0D0D0D] transition duration-300"
+            onClick={toggleMenu}
+          >
+            Contact Us
+          </Link>
+        </nav>
+      )}
     </header>
   );
 }
