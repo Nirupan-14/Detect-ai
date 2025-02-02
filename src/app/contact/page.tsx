@@ -9,8 +9,8 @@ export default function Contact() {
           Get in <span className="text-[#2E90FA] underline">Touch</span>
         </h1>
         <p className="mt-4 text-lg text-[#808080]">
-          We'd love to hear from you! Please fill out the form below or contact
-          us directly.
+         We would love to hear from you! Please fill out the form below or contact
+          us directly. 
         </p>
       </header>
 
@@ -68,7 +68,7 @@ export default function Contact() {
             <textarea
               id="message"
               name="message"
-              rows="6"
+              rows ={6} 
               placeholder="Write your message here..."
               className="w-full p-3 bg-[#1A1A1A] text-[#FAFAFA] rounded-lg border border-[#535862] focus:outline-none focus:ring-2 focus:ring-[#2E90FA]"
               required

@@ -5,7 +5,7 @@ import { useState, useRef } from "react";
 export default function Home() {
   const [selectedFileType, setSelectedFileType] = useState("audio"); // default to audio
   const fileInputRef = useRef(null); // Create a reference for the file input
-  const [selectedFile, setSelectedFile] = useState(null);
+
 
   const handleSelectAudio = () => {
     setSelectedFileType("audio");
@@ -16,16 +16,10 @@ export default function Home() {
   };
 
   const handleIconClick = () => {
-    fileInputRef.current.click(); // Trigger file input click
+   
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFile(file); // Store the selected file
-      console.log(`File selected:`, file);
-    }
-  };
+  
 
   return (
     <main className="pb-16 px-6 md:px-0">
@@ -106,7 +100,7 @@ export default function Home() {
           accept={selectedFileType === "audio" ? "audio/*" : "video/*"}
           ref={fileInputRef}
           style={{ display: "none" }}
-          onChange={handleFileChange}
+          
         />
 
         {/* Upload Icon and Analysis Button */}
