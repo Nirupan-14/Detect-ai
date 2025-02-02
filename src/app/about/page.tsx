@@ -1,5 +1,4 @@
 "use client";
-
 import { FaMicrophoneAlt, FaEye, } from "react-icons/fa"; // Importing icons
 import { MdOutlineVideoLibrary } from "react-icons/md";
 
@@ -22,7 +21,7 @@ export default function About() {
         <div className="space-y-12">
           <h2 className="text-3xl font-bold text-center">Our Objectives</h2>
           <p className="text-[#808080] text-center max-w-3xl mx-auto">
-            At Detect AI, we harness the power of advanced AI models to detect and analyze digital content for transparency and authenticity. Here's what we're working on:
+            At Detect AI, we harness the power of advanced AI models to detect and analyze digital content for transparency and authenticity. Here&apos;s what we&apos;re working on:
           </p>
 
           {/* Objective Cards */}
