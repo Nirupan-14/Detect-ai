@@ -23,26 +23,26 @@ export default function Home() {
 
   return (
     <main className="pb-16 px-6 md:px-0">
-      <div className="text-center md:py-[92px] py-8 text-[#FAFAFA]   md:mx-20">
+      <div className="text-center md:py-[92px] sm:py-10 py-14 text-[#FAFAFA]   md:mx-20">
         <h3 className="text-[#FAFAFA] xl:text-[48px] md:text-[34px]  text-[28px] font-bold">
           Detect AI Generated{" "}
           <span className="text-[#2E90FA] underline">Audio & Video</span> Files
         </h3>
         <div className=" xl:px-[200px] lg:mx-32 md:mx-22 sm:mx-12   mx-4 ">
-          <p className="pt-4 text-[14px] md:text-[20px]">
+          <p className="pt-6  md:pt-4 text-[15px] md:text-[20px]">
             Upload your audio or video files and uncover their authenticity with
             our advanced AI analysis.
           </p>
         </div>
       </div>
 
-      <div className="text-[#FDFDFD] xl:px-[420px] lg:px-44  md:px-40 sm:px-32 px-10  pt-4 py-6 md:text-[16px] text-[10px]">
+      <div className="text-[#FDFDFD] xl:px-[420px] lg:px-44  md:px-40 sm:px-12 px-4  pt-8 md:pt-6 py-6 md:text-[16px] text-[14px]">
         <div className="border border-1 border-[#535862] flex justify-center items-center text-center p-1 rounded-full">
           {/* Audio Section */}
           <div
             className={`${
               selectedFileType === "audio" ? "bg-[#2E90FA]" : "hover:bg-[#1A1A1A]"
-            } rounded-full flex justify-center items-center gap-2 md:py-4 py-2 px-auto w-full cursor-pointer`}
+            } rounded-full flex justify-center items-center gap-2 md:py-4 py-3 px-auto w-full cursor-pointer`}
             onClick={handleSelectAudio}
           >
             <svg
@@ -61,7 +61,7 @@ export default function Home() {
           <div
             className={`${
               selectedFileType === "video" ? "bg-[#2E90FA]" : "hover:bg-[#1A1A1A]"
-            } rounded-full flex justify-center items-center gap-2 md:py-4 py-2  px-auto w-full cursor-pointer`}
+            } rounded-full flex justify-center items-center gap-2 md:py-4 py-3  px-auto w-full cursor-pointer`}
             onClick={handleSelectVideo}
           >
             <svg
@@ -83,8 +83,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="bg-[#1A1A1A] p-4 sm:p-6 md:p-6 lg:p-6 xl:mx-72 lg:mx-32 md:mx-24 sm:mx-12 mx-2 rounded-3xl md:text-[16px] text-[14px]">
-        <p className="text-[#808080] md:pb-8 scroll-pb-36 text-[14px] md:text-[18px]">
+      <div className="bg-[#1A1A1A] p-6 sm:p-6 md:p-6 lg:p-6 xl:mx-72 lg:mx-32 md:mx-24 sm:mx-12 mx-2 rounded-3xl md:text-[16px] text-[14px]">
+        <p className="text-[#808080] pb-8 scroll-pb-36 text-[15px] md:text-[18px]">
           <span className="block md:hidden">
             Drag and drop your {selectedFileType} file or click to upload.
           </span>

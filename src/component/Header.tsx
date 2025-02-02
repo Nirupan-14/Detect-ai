@@ -16,7 +16,7 @@ export default function Header() {
       <div
         className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[70%] h-2 rounded-full"
         style={{
-          boxShadow: '0 20px 50px 10px rgba(46, 144, 250, 0.4)',
+          boxShadow: '0 20px 40px 10px rgba(46, 144, 250, 0.4)',
           background: 'radial-gradient(ellipse at center, rgba(46, 144, 250, 0.4) 50%, rgba(46, 144, 250, 0) 100%)',
         }}
       ></div>
