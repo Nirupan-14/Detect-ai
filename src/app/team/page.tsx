@@ -1,7 +1,8 @@
 "use client";
 import { useState } from 'react';
-import { FaLinkedin, FaGraduationCap, FaUniversity, FaUserTie } from 'react-icons/fa';
-import { MdEmail, MdSchool } from 'react-icons/md';
+import { FaGraduationCap, FaUniversity, FaUserTie } from 'react-icons/fa';
+import { MdSchool } from 'react-icons/md';
+import Image from "next/image";
 
 const students = [
   {
@@ -42,7 +43,6 @@ const supervisor = {
   faculty: "Faculty of Technology",
   university: "University of Sri Jayewardenepura",
   image: "/team/Dr.nalaka.png",
- 
 };
 
 export default function Team() {
@@ -71,7 +71,7 @@ export default function Team() {
             <div className="h-1 w-full bg-gradient-to-r from-transparent via-[#2E90FA] to-transparent"></div>
           </div>
           <p className="text-xl text-[#B0B0B0] max-w-4xl mx-auto leading-relaxed">
-            Pioneering the future of AI detection through innovative research, cutting-edge technology, 
+            Pioneering the future of AI detection through innovative research, cutting-edge technology,
             and collaborative excellence in artificial intelligence and machine learning.
           </p>
         </header>
@@ -155,11 +155,10 @@ export default function Team() {
             <div className="flex justify-center">
               <div 
                 className="max-w-2xl bg-gradient-to-br from-[#2A2A2A] to-[#1F1F1F] rounded-3xl overflow-hidden shadow-2xl border border-[#404040] hover:border-[#2E90FA] transition-all duration-500 transform hover:scale-105"
-                onMouseEnter={() => setHoveredCard('supervisor')}
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 <div className="relative">
-                  <img
+                  <Image
                     src={supervisor.image}
                     alt={supervisor.name}
                     className="w-full h-80 object-cover transition-all duration-500 hover:grayscale-0 grayscale"
@@ -180,7 +179,6 @@ export default function Team() {
                   
                   {hoveredCard === 'supervisor' && (
                     <div className="space-y-4 animate-fadeIn">
-                     
                     </div>
                   )}
                 </div>
@@ -206,11 +204,10 @@ export default function Team() {
                 <div
                   key={index}
                   className="bg-gradient-to-br from-[#2A2A2A] to-[#1F1F1F] rounded-3xl overflow-hidden shadow-2xl border border-[#404040] hover:border-[#2E90FA] transition-all duration-500 transform hover:scale-105"
-                  onMouseEnter={() => setHoveredCard(`student-${index}`)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
                   <div className="relative">
-                    <img
+                    <Image
                       src={student.image}
                       alt={student.name}
                       className="w-full h-64 object-cover transition-all duration-500 hover:grayscale-0 grayscale"

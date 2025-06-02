@@ -6,12 +6,14 @@ import { MdOutlineVideoLibrary, MdPsychology, MdAnalytics } from "react-icons/md
 
 
 export default function About() {
-  const [activeCard, setActiveCard] = useState(null);
   const [activeSection, setActiveSection] = useState('objectives');
+  const [activeCard, setActiveCard] = useState<string | null>(null);
 
-  const handleCardHover = (cardId) => {
+
+  const handleCardHover = (cardId: string) => {
     setActiveCard(cardId);
   };
+  
 
   const handleCardLeave = () => {
     setActiveCard(null);

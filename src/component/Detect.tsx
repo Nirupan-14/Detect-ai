@@ -1,14 +1,53 @@
 "use client";
 
 import { useState, useRef } from "react";
+import React from 'react';
 
 export default function Detect() {
   const [selectedFileType, setSelectedFileType] = useState("audio");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [results, setResults] = useState(null);
-  const [error, setError] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const fileInputRef = useRef(null);
+  const [results, setResults] = useState<ResultsType | null>(null);
+
+  const [error, setError] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  interface DetailedAnalysis {
+    eye_movement: {
+      natural: number;
+      ai: number;
+    };
+    audio_emotion: {
+      natural: number;
+      ai: number;
+    };
+    lip_sync: {
+      natural: number;
+      ai: number;
+    };
+  }
+  
+  interface ModelWeights {
+    eye: number;
+    lip: number;
+    emotion: number;
+  }
+  
+  interface ResultsType {
+    filename: string;
+    analysis_type: string;
+    prediction: 'ai' | 'natural';
+    confidence: number;
+    ai_probability?: number;
+    natural_probability?: number;
+    probabilities?: {
+      ai: number;
+      natural: number;
+    };
+    detailed_analysis?: DetailedAnalysis;
+    model_weights?: ModelWeights;
+  }
+  
 
   // API endpoint - Update with your ngrok URL
   const API_BASE_URL = "https://d85c-35-199-183-149.ngrok-free.app";
@@ -31,30 +70,30 @@ export default function Detect() {
     fileInputRef.current?.click();
   };
 
-  const handleFileSelect = (event) => {
-    const file = event.target.files[0];
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]; 
     if (file) {
       setSelectedFile(file);
       setResults(null);
       setError(null);
     }
   };
+  
 
-  const handleAnalyze = async () => {
+  const handleAnalyze = async (): Promise<void> => {
     if (!selectedFile) {
       setError("Please select a file first");
       return;
     }
-
+  
     setIsAnalyzing(true);
     setError(null);
     setResults(null);
-
+  
     try {
       const formData = new FormData();
-      
-      // Use correct endpoints and form field names based on your backend
-      let endpoint;
+      let endpoint: string;
+  
       if (selectedFileType === "audio") {
         formData.append("audio", selectedFile);
         endpoint = `${API_BASE_URL}/predict-voice`;
@@ -62,7 +101,7 @@ export default function Detect() {
         formData.append("video", selectedFile);
         endpoint = `${API_BASE_URL}/predict-video`;
       }
-
+  
       const response = await fetch(endpoint, {
         method: "POST",
         body: formData,
@@ -70,30 +109,36 @@ export default function Detect() {
           "ngrok-skip-browser-warning": "true"
         }
       });
-
+  
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
       }
-
+  
       const data = await response.json();
-
+  
       if (data.error) {
         throw new Error(data.error);
       }
-
+  
       setResults(data);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("Analysis error:", err);
-      setError(err.message || "Analysis failed. Please try again.");
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Analysis failed. Please try again.");
+      }
     } finally {
       setIsAnalyzing(false);
     }
   };
+  
 
-  const formatPercentage = (value) => {
-    return Math.round(value * 100) / 100;
+  const formatPercentage = (value: number): string => {
+    return (value * 100).toFixed(2) + "%";
   };
+  
 
   const renderResults = () => {
     if (!results) return null;
@@ -105,13 +150,14 @@ export default function Detect() {
     
     // Get probabilities - handle both formats
     let aiProb, naturalProb;
-    if (results.probabilities) {
-      aiProb = results.probabilities.ai;
-      naturalProb = results.probabilities.natural;
-    } else {
-      aiProb = results.ai_probability * 100;
-      naturalProb = results.natural_probability * 100;
-    }
+if (results.probabilities) {
+  aiProb = results.probabilities.ai;
+  naturalProb = results.probabilities.natural;
+} else {
+  aiProb = (results.ai_probability ?? 0) * 100;
+  naturalProb = (results.natural_probability ?? 0) * 100;
+}
+
 
     return (
       <div className="mb-6 p-4 bg-[#2A2A2A] rounded-lg">

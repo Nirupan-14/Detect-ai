@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 
 export default function Contact() {
-  const form = useRef();
+  const form = useRef<HTMLFormElement>(null);
   const [isSending, setIsSending] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [isError, setIsError] = useState(false);
@@ -35,17 +35,30 @@ export default function Contact() {
     }
   };
 
-  const buttonVariants = {
-    hover: {
-      scale: 1.02,
-      transition: {
-        duration: 0.2
-      }
-    },
-    tap: {
-      scale: 0.98
-    }
+  type ButtonVariants = {
+  hover: {
+    scale: number;
+    transition: {
+      duration: number;
+    };
   };
+  tap: {
+    scale: number;
+  };
+};
+
+const buttonVariants: ButtonVariants = {
+  hover: {
+    scale: 1.02,
+    transition: {
+      duration: 0.2
+    }
+  },
+  tap: {
+    scale: 0.98
+  }
+};
+
 
   // Clear feedback message after 5 seconds
   useEffect(() => {
@@ -57,52 +70,57 @@ export default function Contact() {
     }
   }, [feedbackMessage]);
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSending(true);
     setFeedbackMessage("");
     setIsError(false);
-
-    emailjs
-      .sendForm(
+  
+    try {
+      if (!form.current) throw new Error("Form ref not available");
+  
+      // Send main email
+      await emailjs.sendForm(
         "service_p32bigd",
         "template_gxadxlt",
         form.current,
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        (result) => {
-          const userEmail = form.current.email.value;
-          const userName = form.current.name.value;
-
-          emailjs
-            .send(
-              "service_p32bigd",
-              "template_vjgf0vt",
-              {
-                email: form.current.email.value,
-                name: form.current.name.value,
-              },
-              process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-            )
-            .then(() => {
-              setFeedbackMessage("Message sent successfully!");
-              form.current.reset();
-            })
-            .catch((error) => {
-              console.error("Auto-reply email error:", error.text);
-              setFeedbackMessage("Message sent, but failed to send auto-reply.");
-              setIsError(true);
-            });
-        },
-        (error) => {
-          console.error("Contact email error:", error.text);
-          setIsError(true);
-          setFeedbackMessage("Failed to send message. Please try again.");
-        }
-      )
-      .finally(() => setIsSending(false));
+      );
+  
+      // Extract user details from FormData
+      const formData = new FormData(form.current);
+      const userEmail = formData.get("email");
+      const userName = formData.get("name");
+  
+      if (typeof userEmail !== "string" || typeof userName !== "string") {
+        throw new Error("Invalid form data");
+      }
+  
+      // Send auto-reply email
+      await emailjs.send(
+        "service_p32bigd",
+        "template_vjgf0vt",
+        { email: userEmail, name: userName },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      );
+  
+      setFeedbackMessage("Message sent successfully!");
+      form.current.reset();
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Email send error:", error.message);
+        setFeedbackMessage("Failed to send message. Please try again.");
+      } else {
+        console.error("Unknown error", error);
+        setFeedbackMessage("An unknown error occurred.");
+      }
+      setIsError(true);
+    } finally {
+      setIsSending(false);
+    }
   };
+  
+  
 
   return (
     <motion.main 
@@ -205,7 +223,7 @@ export default function Contact() {
           )}
 
           <motion.button
-            variants={itemVariants}
+            variants={buttonVariants} 
             whileHover="hover"
             whileTap="tap"
             type="submit"
