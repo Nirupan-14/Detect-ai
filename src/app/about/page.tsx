@@ -1,7 +1,7 @@
 "use client";
 import Button from '@/component/Button';
 import { useState } from 'react';
-import { FaMicrophoneAlt, FaEye, FaBrain, FaChartLine } from "react-icons/fa";
+import { FaMicrophoneAlt, FaEye,  FaChartLine } from "react-icons/fa";
 import { MdOutlineVideoLibrary, MdPsychology, MdAnalytics } from "react-icons/md";
 
 
