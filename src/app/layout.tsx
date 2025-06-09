@@ -18,9 +18,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Detect AI",
-  description: "Detect AI - AI Content Detection Tool",
+  description: "Detect AI - AI Voive Detection Tool",
   icons: {
-    icon: "/favicon.png", // Favicon applied to all pages
+    icon: "detectai.png",
   },
 };
 
