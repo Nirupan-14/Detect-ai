@@ -50,7 +50,7 @@ export default function Detect() {
   
 
   // API endpoint - Update with your ngrok URL
-  const API_BASE_URL = "https://d85c-35-199-183-149.ngrok-free.app";
+  const API_BASE_URL = "https://336d-34-85-223-158.ngrok-free.app";
 
   const handleSelectAudio = () => {
     setSelectedFileType("audio");
@@ -136,7 +136,7 @@ export default function Detect() {
   
 
   const formatPercentage = (value: number): string => {
-    return (value * 100).toFixed(2) + "%";
+    return (value ).toFixed(2) ;
   };
   
 

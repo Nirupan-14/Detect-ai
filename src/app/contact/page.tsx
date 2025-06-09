@@ -342,7 +342,7 @@ const buttonVariants: ButtonVariants = {
                 />
               </svg>
             </motion.div>
-            <p className="text-lg text-[#FAFAFA]">+94 777 77 77 77</p>
+            <p className="text-lg text-[#FAFAFA]">+94 773 70 68 24</p>
           </motion.div>
         </motion.div>
       </motion.section>

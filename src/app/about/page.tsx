@@ -42,11 +42,11 @@ export default function About() {
         </header>
 
         {/* Navigation Tabs */}
-        <div className="flex justify-center mb-16">
-          <div className="bg-[#2A2A2A]/80 backdrop-blur-sm rounded-2xl p-2 border border-[#404040]">
+        <div className="flex justify-center items-center mb-16">
+          <div className="bg-[#2A2A2A]/80 backdrop-blur-sm rounded-2xl p-1 border border-[#404040] ">
             <button
               onClick={() => setActiveSection('objectives')}
-              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 ${
+              className={`px-1 sm:px-2 md:px-8 py-3 rounded-xl font-semibold transition-all duration-300 ${
                 activeSection === 'objectives'
                   ? 'bg-[#2E90FA] text-white shadow-lg shadow-[#2E90FA]/30'
                   : 'text-[#B0B0B0] hover:text-white hover:bg-[#404040]'
@@ -56,7 +56,7 @@ export default function About() {
             </button>
             <button
               onClick={() => setActiveSection('models')}
-              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 ml-2 ${
+              className={`px-1 sm:px-2 md:px-8 py-3 rounded-xl font-semibold transition-all duration-300 sm:ml-2  ${
                 activeSection === 'models'
                   ? 'bg-[#2E90FA] text-white shadow-lg shadow-[#2E90FA]/30'
                   : 'text-[#B0B0B0] hover:text-white hover:bg-[#404040]'

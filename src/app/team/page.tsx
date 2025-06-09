@@ -78,10 +78,10 @@ export default function Team() {
 
         {/* Navigation Tabs */}
         <div className="flex justify-center mb-16">
-          <div className="bg-[#2A2A2A]/80 backdrop-blur-sm rounded-2xl p-2 border border-[#404040]">
+          <div className="bg-[#2A2A2A]/80 backdrop-blur-sm rounded-2xl p-2 border border-[#404040] flex ">
             <button
               onClick={() => setActiveSection('overview')}
-              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 ${
+              className={`px-1 sm:px-2 md:px-8  py-3 rounded-xl font-semibold transition-all duration-300  ${
                 activeSection === 'overview'
                   ? 'bg-[#2E90FA] text-white shadow-lg shadow-[#2E90FA]/30'
                   : 'text-[#B0B0B0] hover:text-white hover:bg-[#404040]'
@@ -91,7 +91,7 @@ export default function Team() {
             </button>
             <button
               onClick={() => setActiveSection('supervisor')}
-              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 ml-2 ${
+              className={`px-1 sm:px-2 md:px-8  rounded-xl font-semibold transition-all duration-300 ml-2   ${
                 activeSection === 'supervisor'
                   ? 'bg-[#2E90FA] text-white shadow-lg shadow-[#2E90FA]/30'
                   : 'text-[#B0B0B0] hover:text-white hover:bg-[#404040]'
@@ -101,7 +101,7 @@ export default function Team() {
             </button>
             <button
               onClick={() => setActiveSection('members')}
-              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 ml-2 ${
+              className={`px-1 sm:px-2 md:px-8  py-3 rounded-xl font-semibold transition-all duration-300 sm:ml-2  ${
                 activeSection === 'members'
                   ? 'bg-[#2E90FA] text-white shadow-lg shadow-[#2E90FA]/30'
                   : 'text-[#B0B0B0] hover:text-white hover:bg-[#404040]'
@@ -161,6 +161,8 @@ export default function Team() {
                   <Image
                     src={supervisor.image}
                     alt={supervisor.name}
+                    width={500}
+                    height={320}
                     className="w-full h-80 object-cover transition-all duration-500 hover:grayscale-0 grayscale"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#2A2A2A] via-transparent to-transparent opacity-60"></div>
@@ -210,6 +212,8 @@ export default function Team() {
                     <Image
                       src={student.image}
                       alt={student.name}
+                      width={500}
+                      height={320}
                       className="w-full h-64 object-cover transition-all duration-500 hover:grayscale-0 grayscale"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#2A2A2A] via-transparent to-transparent opacity-60"></div>
